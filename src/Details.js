@@ -1,15 +1,7 @@
 import React from "react";
 import pet from "@frontendmasters/pet";
 class Details extends React.Component {
-  // constructor and super needs to be done, period
-  constructor(props) {
-    super(props);
-
-    // does shallow merge ( if confused, read about this, frontend masters : https://frontendmasters.com/courses/complete-react-v5/class-components/ )
-    this.state = {
-      loading: true,
-    };
-  }
+  state = { loading: true };
   // hooks don't work with class component
   // runs only once, so use this to get the ajax data and similar kind of things
   componentDidMount() {
