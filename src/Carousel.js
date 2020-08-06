@@ -5,7 +5,15 @@ class Carousel extends React.Component {
     photos: [],
     active: 0,
   };
+  //   // solution - 1 for 'undefined' context of handleIndexClick
+  //   constructor(props) {
+  //     super(props);
 
+  //     // this binds the handleIndexClick context to 'Carousel'
+  //     // and starting it in the constructor ensures that it is
+  //     // bound with the 'Carousel'
+  //     this.handleIndexClick = this.handleIndexClick.bind(this);
+  //   }
   static getDerivedStateFromProps({ media }) {
     let photos = ["http://placecorgi.com/600/600"];
 
@@ -17,7 +25,13 @@ class Carousel extends React.Component {
     return { photos };
   }
 
-  handleIndexClick(event) {
+  //   handleIndexClick(event) {
+  // solution - 2 for 'undefined' context of handleIndexClick
+  // Rule of thumb ->
+  //  1. Whenever you're passing functions down into children
+  //  2. Or whenever you're doing event listeners do an arrow function
+  //  Because that guarantees you that 'this' would be correct
+  handleIndexClick = (event) => {
     // currently 'this' is of undefined context or 'window' context
     // but not of 'Carousel' context that we want it to be
     this.setState({
@@ -26,7 +40,7 @@ class Carousel extends React.Component {
       // infront of it
       active: +event.target.dataset.index,
     });
-  }
+  };
 
   render() {
     const { photos, active } = this.state;
